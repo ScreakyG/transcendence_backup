@@ -1,20 +1,22 @@
 import { router } from "./router.js";
 
-//On ajoute des event listener sur tout les boutons.
-export function handleLinks() {
-    const links = document.querySelectorAll("a");
-    console.log(links);
+// On utilise l'event delegation pour catch tout les events click , meme ceux qui seront injectes plus tard.
+function listenAllClicks() {
+    let body = document.querySelector("body");
+    console.log(body);
 
-    for (let idx = 0; idx < links.length; idx++)
-    {
-        links[idx].addEventListener("click", (event) => {
-            event.preventDefault();
-            console.log(event.target.href)
-            window.history.pushState({}, "", event.target.href);
-            router ();
-        })
-    }
+    body.addEventListener("click", (e) => {
+        const target = e.target;
+
+        console.log("Click event Target = " + target);
+        if (target.matches("a"))
+        {
+            e.preventDefault();
+            window.history.pushState(null, "", e.target.href);
+            router();
+        }
+    })
 }
 
-// handleLinks();
+listenAllClicks();
 router();
