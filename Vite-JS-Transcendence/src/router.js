@@ -1,14 +1,18 @@
-import { registerPopup } from "./popup.js";
+import { signupEvents } from "./signupevents.js";
 import { dashboardView } from "./views/dashboard.js";
-import { landingView } from "./views/landing.js";
 import { playView } from "./views/play.js";
 import { profileView } from "./views/profile.js";
+import { signupView } from "./views/signup.js";
+import { loginView } from "./views/login.js";
+import { loginEvents } from "./loginevents.js";
 
 const routes = {
     index : "/",
     dashboard : "/dashboard",
     profile : "/profile",
-    play : "/play"
+    play : "/play",
+    login : "/login",
+    signup : "/signup"
 }
 
 // Gestion des boutons forward et backward
@@ -24,8 +28,18 @@ export async function router() {
     console.log("Current path = " + location.pathname);
     switch (location.pathname) {
         case routes.index:
-            changingArea.innerHTML = landingView();
-            registerPopup();
+            changingArea.innerHTML = loginView();
+            loginEvents();
+            break;
+
+        case routes.login:
+            changingArea.innerHTML = loginView();
+            loginEvents();
+            break;
+
+        case routes.signup:
+            changingArea.innerHTML = signupView();
+            signupEvents();
             break;
 
         case routes.dashboard:

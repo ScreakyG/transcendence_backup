@@ -12,7 +12,7 @@ function listenAllClicks() {
         if (target.matches("a"))
         {
             e.preventDefault();
-            window.history.pushState(null, "", e.target.href);
+            window.history.pushState(null, "", e.target.href); //Met a jour la location actuelle grace au href du <a></a>
             router();
         }
     })
