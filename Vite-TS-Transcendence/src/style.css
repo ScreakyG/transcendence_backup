@@ -126,7 +126,7 @@ nav {
     align-items: center;
 
     border-radius: 20px;
-    background: linear-gradient(#FFEFBA, #FFFFFF);;
+    background: linear-gradient(#FFEFBA, #FFFFFF);
 }
 
 /* ----------------FORMS------------------------- */
@@ -136,6 +136,7 @@ nav {
     --base-color: white;
     --text-color: #2E2B41;
     --input-color: #F3F0FF;
+    --error-color: #f06272;
 }
 
 #signup-view{

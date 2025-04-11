@@ -1,5 +1,5 @@
 export function landingView(): string {
-    return `
+    return /*html*/`
     <div class="signin-box">
         <h1>TRANSCENDENCE</h1>
         <a href="/dashboard">SIGN IN</a>
