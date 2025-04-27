@@ -31,12 +31,14 @@ async function getQrCode(): Promise<void> {
     // }
 }
 
-async function sendCode(form:HTMLFormElement): Promise<void> {
+async function sendCode(): Promise<void> {
     console.log("2FA FORM | Code will be sent to back");
 
 //     A Tester avec la route du backend
-    const code = document.getElementById("code") as HTMLInputElement;
+    const codeInput = document.getElementById("code") as HTMLInputElement;
     const errElement = document.getElementById("error-message") as HTMLElement;
+
+    const code = codeInput?.value;
 
     try
     {
@@ -52,7 +54,7 @@ async function sendCode(form:HTMLFormElement): Promise<void> {
 
         if (!res.ok)
         {
-            const error = res.json();
+            // const error = res.json();
             if (errElement)
             {
                 // errElement.innerText = error.message; //Vrai message du back.
@@ -99,7 +101,7 @@ function verifyCode(): void {
 
             event.preventDefault();
             if (isValidInput(form) === true )
-                sendCode(form);
+                sendCode();
         })
     }
 }

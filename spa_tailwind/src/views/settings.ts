@@ -1,4 +1,3 @@
-import { preview } from "vite";
 import { toasts } from "../toasts";
 
 
@@ -63,37 +62,37 @@ function initNicknameForm(): void {
     }
 }
 
-async function updateAvatar(formData: FormData): Promise<void> {
-    try
-    {
-        const res = await fetch("https://reqres.in/api/users", {
-            method: "POST",
-            body: formData,
-            // credentials: "include"
-        });
-        if (!res.ok)
-        {
-            toasts.error("Failed to update avatar");
-            window.prompt("Could not update avatar, try later..");
-            loadProfileCard();
-            return ;
-        }
-        //Here we should get the return value of the call to update the localStorage.
-        const avatarInput = document.getElementById("update-avatar") as HTMLInputElement;
-        const newAvatar = URL.createObjectURL(avatarInput.files[0]);
-        const submitBtn = document.getElementById("submit-avatar-btn") as HTMLButtonElement;
+// async function updateAvatar(formData: FormData): Promise<void> {
+//     try
+//     {
+//         const res = await fetch("https://reqres.in/api/users", {
+//             method: "POST",
+//             body: formData,
+//             // credentials: "include"
+//         });
+//         if (!res.ok)
+//         {
+//             toasts.error("Failed to update avatar");
+//             window.prompt("Could not update avatar, try later..");
+//             loadProfileCard();
+//             return ;
+//         }
+//         //Here we should get the return value of the call to update the localStorage.
+//         const avatarInput = document.getElementById("update-avatar") as HTMLInputElement;
+//         const newAvatar = URL.createObjectURL(avatarInput.files[0]);
+//         const submitBtn = document.getElementById("submit-avatar-btn") as HTMLButtonElement;
 
-        console.log("Upload Successfull");
-        toasts.success("Updated avatar");
-        localStorage.setItem("avatar", newAvatar);
-        submitBtn.classList.add("hidden");
-        loadProfileCard();
-    }
-    catch(error)
-    {
-        console.error("ERROR REACH UPLOAD AVATAR ENDPOINT");
-    }
-}
+//         console.log("Upload Successfull");
+//         toasts.success("Updated avatar");
+//         localStorage.setItem("avatar", newAvatar);
+//         submitBtn.classList.add("hidden");
+//         loadProfileCard();
+//     }
+//     catch(error)
+//     {
+//         console.error("ERROR REACH UPLOAD AVATAR ENDPOINT");
+//     }
+// }
 
 //Function that will listen to the submit button and call API to update in DB(need to edit this when we connect backend).
 function handleSubmitAvatar(): void {
@@ -131,20 +130,20 @@ function initAvatarUpload(): void {
     const uploadInput = document.getElementById("update-avatar") as HTMLInputElement;
     const submitBtn = document.getElementById("submit-avatar-btn") as HTMLButtonElement;
 
+    // The active-avatar img will trigger the input file.
     if (activeAvatar)
     {
         activeAvatar.addEventListener("click", (event) => {
             event.preventDefault();
-            uploadInput?.click(); // The active-avatar img will trigget the input file.
+            uploadInput?.click();
         })
     }
-
+    // Preview the new avatar in the active-avatar element.
     if (uploadInput)
     {
         uploadInput.onchange = function () {
             if (uploadInput.files)
             {
-                // Preview the new avatar in the active-avatar element.
                 const avatarPreview = URL.createObjectURL(uploadInput?.files[0]);
                 activeAvatar.src = avatarPreview;
                 submitBtn.classList.remove("hidden"); // Submit btn will now show up.

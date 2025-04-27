@@ -1,13 +1,11 @@
 import { signupEvents } from "./signupevents.ts";
 import { dashboardView } from "./views/dashboard.ts";
 import { pongView } from "./views/pong.ts";
-import { playView } from "./views/play.ts";
-import { initProfile, profileView } from "./views/profile.ts";
 import { signupView } from "./views/signup.ts";
 import { loginView } from "./views/login.ts";
 import { loginEvents } from "./loginevents.ts";
 import { initializeDashboard } from "./dashboardEvents.ts";
-import { initPong, stopGame, stopPong } from "./ponggame.ts";
+import { initPong, stopPong } from "./ponggame.ts";
 import { twofaView } from "./views/2fa.ts";
 import { init2fa } from "./2faevents.ts";
 import { isUserAuth } from "./auth.ts";
@@ -17,7 +15,6 @@ import { initSettings, settingsView } from "./views/settings.ts";
 const routes = {
     index : "/",
     dashboard : "/dashboard",
-    profile : "/profile",
     play : "/play",
     login : "/login",
     signup : "/signup",
@@ -89,18 +86,6 @@ export async function router(): Promise<void> {
 
             changingArea.innerHTML = dashboardView();
             initializeDashboard();
-            stopPong();//reset pong
-            break ;
-
-        case routes.profile:
-            if (isAuth === false)
-            {
-                redirectTo("/");
-                return;
-            }
-
-            changingArea.innerHTML = profileView();
-            initProfile();
             stopPong();//reset pong
             break ;
 

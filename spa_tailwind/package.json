@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/howler": "^2.2.12",
     "@types/toastify-js": "^1.12.3",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
